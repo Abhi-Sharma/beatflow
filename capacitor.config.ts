@@ -4,7 +4,6 @@ const config: CapacitorConfig = {
   appId: 'com.beatflow.app',
   appName: 'BeatFlow',
   webDir: 'public',
-  bundledWebRuntime: false,
   server: {
     url: 'https://beatflow.space',
     cleartext: false
