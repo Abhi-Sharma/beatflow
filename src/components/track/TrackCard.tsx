@@ -95,7 +95,7 @@ export function TrackCard({ track }: TrackCardProps) {
             {track.downloadUrl && (
               <a 
                 href={track.downloadUrl} 
-                target="_blank" 
+                download={`${track.title.replace(/[^a-z0-9]/gi, '_').toLowerCase()}.mp3`} 
                 rel="noopener noreferrer" 
                 title="Download Free Track" 
                 onClick={(e) => e.stopPropagation()}

@@ -111,7 +111,7 @@ export function TrackDetailsClient({ track, relatedTracks }: TrackDetailsClientP
           {track.downloadUrl && (
             <a 
               href={track.downloadUrl} 
-              target="_blank" 
+              download={`${track.title.replace(/[^a-z0-9]/gi, '_').toLowerCase()}.mp3`}
               rel="noopener noreferrer" 
               title="Download Full Audio"
               className="inline-flex items-center justify-center w-12 h-12 rounded-full text-gray-400 hover:text-white transition-colors hover:bg-accent/50"
