@@ -43,6 +43,15 @@ export function Sidebar() {
           </div>
         </div>
       </nav>
+      
+      <div className="p-5 mt-auto border-t border-border/40 text-[11px] text-zinc-500 flex flex-col gap-2 bg-zinc-950/20">
+        <div className="flex flex-wrap gap-x-3 gap-y-1.5 font-medium">
+          <Link href="/privacy-policy" className="hover:text-zinc-300 transition-colors">Privacy</Link>
+          <Link href="/terms" className="hover:text-zinc-300 transition-colors">Terms of Service</Link>
+          <Link href="/contact" className="hover:text-zinc-300 transition-colors">Contact</Link>
+        </div>
+        <span className="w-full mt-2 text-zinc-600 tracking-wide">© {new Date().getFullYear()} BeatFlow Legal</span>
+      </div>
     </aside>
   );
 }

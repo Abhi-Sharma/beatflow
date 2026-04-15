@@ -59,13 +59,12 @@ export default async function Home() {
         <div className="min-h-[32rem] py-24 px-8 md:px-12 rounded-3xl bg-gradient-to-tr from-emerald-950 via-gray-900 to-black border-b border-emerald-900/50 flex flex-col justify-center relative overflow-hidden shadow-2xl mx-4 mt-6">
           <div className="absolute inset-0 bg-black/50" />
           <div className="relative z-10 max-w-4xl">
-            <span className="inline-block px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-xs md:text-sm font-bold tracking-widest uppercase mb-4 shadow-sm border border-emerald-500/20">Jamendo Powered</span>
+            <span className="inline-block px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-xs md:text-sm font-bold tracking-widest uppercase mb-4 shadow-sm border border-emerald-500/20">Creator Safe</span>
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-black tracking-tighter mb-4 md:mb-6 drop-shadow-xl text-white leading-tight">
-              Discover Free Music,<br className="hidden md:block"/> Download & Stream Instantly
+              Royalty-Free Music,<br className="hidden md:block"/> Legal to Stream & Download
             </h1>
             <p className="text-gray-300 max-w-2xl text-lg md:text-xl lg:text-2xl drop-shadow mb-8 md:mb-10 font-medium leading-relaxed">
-              Explore 100% royalty-free tracks sorted by premium categories. 
-              Find your next favorite beat and enhance your workflow organically.
+              Explore 100% royalty-free independent tracks. Secure the perfect beat for your content creation legally and effortlessly.
             </p>
             <div className="flex gap-4">
               <Link href="/search" className="inline-flex items-center justify-center rounded-full text-base md:text-lg font-bold transition-all focus-visible:outline-none ring-offset-background bg-emerald-500 text-black hover:bg-emerald-400 h-12 md:h-14 px-8 md:px-10 py-2 shadow-[0_0_20px_rgba(16,185,129,0.3)] hover:scale-105 active:scale-95">
