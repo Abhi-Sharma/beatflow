@@ -1,10 +1,11 @@
-import { getJamendoFreeMusic } from "@/lib/api/jamendo";
+import { getJamendoCategory } from "@/lib/api/jamendo";
 import { TrackCard } from "@/components/track/TrackCard";
 import type { Metadata } from 'next';
 import { notFound } from "next/navigation";
+import { PlayerTrack } from "@/store/usePlayerStore";
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const slug = params.slug;
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
   if (!slug.startsWith("free-") || !slug.endsWith("-music")) {
     return {};
   }
@@ -22,40 +23,41 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
-export default async function GenericSEOPage({ params }: { params: { slug: string } }) {
-  const slug = params.slug;
+export default async function GenericSEOPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
   if (!slug.startsWith("free-") || !slug.endsWith("-music")) {
     notFound();
   }
 
   const mood = slug.replace("free-", "").replace("-music", "");
-  const res = await getJamendoFreeMusic(mood, 30);
+  const res = await getJamendoCategory(mood, 30);
 
-  const mapJamendo = (t: any) => ({
+  const mapJamendo = (t: any): PlayerTrack => ({
     id: t.id,
     title: t.name,
     artist: t.artist_name,
     coverUrl: t.image,
     audioUrl: t.audio,
-    source: 'jamendo' as const,
+    downloadUrl: t.audiodownload || undefined,
+    source: 'jamendo',
   });
 
   const tracks = (res.results || []).map(mapJamendo);
 
   return (
-    <div className="space-y-6 animate-in fade-in">
-      <div className="h-64 bg-gradient-to-br from-primary/20 to-background rounded-xl p-8 flex items-end">
+    <div className="space-y-6 animate-in fade-in pb-32">
+      <div className="h-64 bg-gradient-to-br from-emerald-500/20 to-background rounded-xl p-8 flex items-end ml-4 mr-4 mt-6">
         <div>
-          <h1 className="text-5xl font-bold tracking-tight capitalize drop-shadow-lg text-foreground mb-2">Free {mood.replace(/-/g, ' ')} Music</h1>
-          <p className="text-muted-foreground text-lg">Top royalty-free {mood} tracks for creators.</p>
+          <h1 className="text-4xl md:text-5xl font-black tracking-tight capitalize drop-shadow-lg text-white mb-2">Free {mood.replace(/-/g, ' ')} Music</h1>
+          <p className="text-zinc-300 text-lg">Top royalty-free {mood} tracks for creators.</p>
         </div>
       </div>
-      <div>
+      <div className="px-4 md:px-8">
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
           {tracks.map((t) => (
             <TrackCard key={`free-track-${t.id}`} track={t} />
           ))}
-          {tracks.length === 0 && <p className="text-muted-foreground">No tracks found for this mood.</p>}
+          {tracks.length === 0 && <p className="text-zinc-500">No tracks found for this mood.</p>}
         </div>
       </div>
     </div>
