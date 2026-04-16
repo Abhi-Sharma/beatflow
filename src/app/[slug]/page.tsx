@@ -45,7 +45,7 @@ export default async function GenericSEOPage({ params }: { params: Promise<{ slu
   const tracks = (res.results || []).map(mapJamendo);
 
   return (
-    <div className="space-y-6 animate-in fade-in pb-32">
+    <div className="space-y-6 animate-in fade-in pb-12">
       <div className="h-64 bg-gradient-to-br from-emerald-500/20 to-background rounded-xl p-8 flex items-end ml-4 mr-4 mt-6">
         <div>
           <h1 className="text-4xl md:text-5xl font-black tracking-tight capitalize drop-shadow-lg text-white mb-2">Free {mood.replace(/-/g, ' ')} Music</h1>

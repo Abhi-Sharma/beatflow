@@ -96,7 +96,7 @@ export default async function SEOLandingPage({ params }: SEOPageProps) {
   const tracks = searchResults.results?.map(mapJamendo) || [];
 
   return (
-    <div className="min-h-screen bg-black animate-in fade-in pb-32">
+    <div className="bg-black animate-in fade-in pb-12">
       {/* Hero Section */}
       <section className="relative pt-24 pb-16 md:pt-32 md:pb-24 px-6 overflow-hidden">
         <div className="absolute inset-0 bg-zinc-950 pointer-events-none" />

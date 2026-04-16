@@ -13,7 +13,7 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
   }, []);
 
   if (!mounted) {
-    return <div className="flex-1 w-full h-full flex flex-col">{children}</div>;
+    return <div className="w-full grow shrink-0 flex flex-col min-h-0">{children}</div>;
   }
 
   // Pure entrance animation. AnimatePresence is extremely unstable in Next.js App Router layouts
@@ -27,7 +27,7 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
         duration: 0.35, 
         ease: [0.22, 1, 0.36, 1] as const 
       }}
-      className="flex-1 w-full flex flex-col min-w-0"
+      className="w-full grow shrink-0 flex flex-col min-w-0"
     >
       {children}
     </motion.div>

@@ -10,12 +10,36 @@ import { getUserFavorites } from "@/app/actions/favorites";
 import { MobileBottomNav } from "@/components/layout/MobileBottomNav";
 import { PageTransition } from "@/components/layout/PageTransition";
 import Link from "next/link";
+import NextTopLoader from 'nextjs-toploader';
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "BeatFlow - Royalty Free Music",
+  metadataBase: new URL("https://beatflow.space"),
+  title: "BeatFlow - Royalty Free Music for Creators",
   description: "Discover and download high-quality royalty-free music for your videos, vlogs, and streams. A legal independent creator platform powered by Jamendo.",
+  openGraph: {
+    title: "BeatFlow - Royalty Free Music for Creators",
+    description: "Discover and download high-quality royalty-free music for your videos, vlogs, and streams.",
+    url: "https://beatflow.space",
+    siteName: "BeatFlow",
+    images: [
+      {
+        url: "https://beatflow.space/icon.png", // Assuming icon.png is used as a fallback hero, ideally use an og-image.png
+        width: 800,
+        height: 600,
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "BeatFlow - Royalty Free Music for Creators",
+    description: "Discover and download high-quality royalty-free music for your videos, vlogs, and streams.",
+    creator: "@beatflow", // Update if there's an actual twitter handle
+    images: ["https://beatflow.space/icon.png"],
+  },
 };
 
 export default async function RootLayout({
@@ -25,27 +49,62 @@ export default async function RootLayout({
 }>) {
   const favorites = await getUserFavorites();
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "BeatFlow",
+    url: "https://beatflow.space",
+    potentialAction: {
+      "@type": "SearchAction",
+      target: "https://beatflow.space/search?q={search_term_string}",
+      "query-input": "required name=search_term_string",
+    },
+  };
+
+  const orgJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "BeatFlow",
+    url: "https://beatflow.space",
+    logo: "https://beatflow.space/icon.png",
+  };
+
   return (
     <ClerkProvider>
       <html lang="en" className="dark">
+        <head>
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          />
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
+          />
+        </head>
         <body className={`${inter.className} h-screen overflow-hidden flex bg-background text-foreground`}>
+          <NextTopLoader color="#10b981" showSpinner={false} height={3} />
           <FavoritesHydrator initialFavorites={favorites} />
           <Sidebar />
           <div className="flex-1 flex flex-col min-w-0 pb-16 md:pb-0">
             <Header />
-            <main className="flex-1 overflow-y-auto overflow-x-hidden pt-6 pb-28 md:pb-32 flex flex-col relative">
-              <div className="flex-1 w-full h-full flex flex-col min-h-0">
+            <main className="w-full grow overflow-y-auto overflow-x-hidden pt-6 pb-28 md:pb-32 flex flex-col relative">
+              <div className="w-full grow shrink-0 flex flex-col min-h-0">
                 <PageTransition>
                   {children}
                 </PageTransition>
               </div>
-              <footer className="mt-16 py-8 px-6 text-center text-xs text-zinc-600 flex flex-col items-center justify-center gap-3 border-t border-zinc-900/50 block md:hidden">
-                <div className="flex items-center gap-6 font-medium">
-                  <Link href="/privacy-policy" className="hover:text-zinc-400 transition-colors">Privacy</Link>
-                  <Link href="/terms" className="hover:text-zinc-400 transition-colors">TOS</Link>
-                  <Link href="/contact" className="hover:text-zinc-400 transition-colors">Contact</Link>
+              <footer className="w-full mt-auto mt-12 py-5 md:py-6 border-t border-zinc-900/50 shrink-0">
+                <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-5">
+                  <div className="text-zinc-500 text-xs md:text-sm order-2 md:order-1 text-center md:text-left">
+                    © {new Date().getFullYear()} BeatFlow. Legal Royalty-Free Audio.
+                  </div>
+                  <div className="flex items-center justify-center flex-wrap gap-5 md:gap-6 text-xs md:text-sm font-medium text-zinc-500 order-1 md:order-2">
+                    <Link href="/privacy-policy" className="hover:text-emerald-400 transition-colors">Privacy</Link>
+                    <Link href="/terms" className="hover:text-emerald-400 transition-colors">Terms</Link>
+                    <Link href="/contact" className="hover:text-emerald-400 transition-colors">Contact</Link>
+                  </div>
                 </div>
-                <div className="tracking-wide">© {new Date().getFullYear()} BeatFlow. Legal Royalty-Free Audio.</div>
               </footer>
             </main>
           </div>

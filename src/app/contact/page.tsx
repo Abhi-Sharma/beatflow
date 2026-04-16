@@ -1,6 +1,6 @@
 export default function Contact() {
   return (
-    <div className="max-w-4xl mx-auto px-6 py-12 pb-32 animate-in fade-in">
+    <div className="max-w-4xl mx-auto px-6 py-12 pb-12 animate-in fade-in">
       <h1 className="text-4xl font-black mb-6 text-white tracking-tight">Contact Support</h1>
       <p className="text-lg text-zinc-400 mb-10 max-w-2xl leading-relaxed">
         For application support, bug reports, or legal inquiries regarding DMCA routing, please explicitly reach out.

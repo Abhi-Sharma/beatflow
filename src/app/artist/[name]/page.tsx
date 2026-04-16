@@ -35,7 +35,7 @@ export default async function ArtistPage({ params }: { params: Promise<{ name: s
   const tracks = (res.results || []).map(mapJamendo);
 
   return (
-    <div className="space-y-6 animate-in fade-in pb-32">
+    <div className="space-y-6 animate-in fade-in pb-12">
       <div className="h-64 bg-gradient-to-br from-emerald-500/20 to-background rounded-xl p-8 flex items-end ml-4 mr-4 mt-4">
         <h1 className="text-4xl md:text-5xl font-black tracking-tight capitalize drop-shadow-lg text-white">{decodedName}</h1>
       </div>

@@ -4,6 +4,13 @@ import { PlayerTrack } from "@/store/usePlayerStore";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import Link from "next/link";
 import { ChevronRight, CheckCircle2, ShieldCheck, DownloadCloud, Radio, Mail } from "lucide-react";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "/",
+  },
+};
 
 export default async function Home() {
   const [
@@ -62,7 +69,7 @@ export default async function Home() {
   ];
 
   return (
-    <div className="space-y-16 animate-in fade-in duration-500 pb-32">
+    <div className="space-y-16 animate-in fade-in duration-500 pb-12">
       <section className="px-4 md:px-8 mt-6">
         <div className="min-h-[36rem] md:min-h-[40rem] rounded-3xl bg-gradient-to-br from-emerald-950 via-zinc-950 to-black border-b border-emerald-900/30 flex flex-col justify-center relative overflow-hidden shadow-2xl mx-auto max-w-[1400px]">
           <div className="absolute inset-0 bg-black/60 pointer-events-none" />

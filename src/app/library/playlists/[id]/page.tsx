@@ -16,7 +16,7 @@ export default async function PlaylistPage({ params }: { params: Promise<{ id: s
   const { playlist, tracks } = result;
 
   return (
-    <div className="flex flex-col h-full pl-6 pr-6 py-6 pb-24">
+    <div className="flex flex-col pl-6 pr-6 py-6 pb-12">
       <div className="flex items-center gap-4 mb-8">
         <Link href="/library/playlists">
           <Button variant="ghost" size="icon" className="h-10 w-10">

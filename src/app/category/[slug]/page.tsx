@@ -9,9 +9,25 @@ import { Metadata } from "next";
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const title = slug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+  const categoryTitle = `${title} Music | BeatFlow Premium`;
+  const categoryDesc = `Listen to and download free ${title} tracks, curated for you on BeatFlow. No copyright music for creators.`;
   return {
-    title: `${title} Music | BeatFlow Premium`,
-    description: `Listen to and download free ${title} tracks, curated for you on BeatFlow. No copyright music for creators.`,
+    title: categoryTitle,
+    description: categoryDesc,
+    alternates: {
+      canonical: `/category/${slug}`,
+    },
+    openGraph: {
+      title: categoryTitle,
+      description: categoryDesc,
+      url: `https://beatflow.space/category/${slug}`,
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: categoryTitle,
+      description: categoryDesc,
+    },
   };
 }
 
@@ -68,7 +84,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
   const formattedTracks = tracksData.map(mapJamendo);
 
   return (
-    <div className="flex flex-col h-full pl-6 pr-6 py-6 pb-32 animate-in fade-in duration-700">
+    <div className="flex flex-col pl-6 pr-6 py-6 pb-12 animate-in fade-in duration-700">
       <div className="flex flex-col md:flex-row items-start md:items-center gap-6 mb-10 mt-6">
         <Link href="/">
           <Button variant="ghost" size="icon" className="h-12 w-12 rounded-full hover:bg-zinc-800 transition-colors shrink-0">
