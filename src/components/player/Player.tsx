@@ -239,18 +239,22 @@ export function Player() {
           }
         }}
       >
-        {/* SEEK BAR (Absolute Top on Desktop) */}
-        <div className="hidden md:block absolute top-0 left-0 right-0 -mt-1 h-1 group">
+        {/* SEEK BAR (Mobile + Desktop) */}
+        <div className="absolute left-0 right-0 top-0 -mt-[3px] md:-mt-1 h-[3px] md:h-1 group z-[100]">
           <input 
             type="range" 
             min={0} 
             max={duration || 100} 
             value={progress} 
             onChange={handleSeek}
-            className="w-full absolute inset-0 z-10 opacity-0 group-hover:opacity-100 cursor-pointer h-2 -top-0.5"
+            onClick={(e) => e.stopPropagation()}
+            className="w-full absolute inset-0 z-10 opacity-0 cursor-pointer h-6 md:h-2 -top-[10px] md:-top-0.5 touch-none"
           />
-          <div className="h-1 bg-zinc-800 w-full absolute top-0 left-0">
-             <div className="h-1 bg-emerald-500" style={{ width: `${(progress / (duration || 1)) * 100}%` }}></div>
+          <div className="h-[3px] md:h-1 bg-zinc-800/80 w-full absolute top-0 left-0 rounded-full">
+             <div 
+               className={`h-full bg-emerald-500 rounded-full transition-all duration-75 ${isPlaying ? 'shadow-[0_0_12px_rgba(16,185,129,0.7)]' : ''}`} 
+               style={{ width: `${(progress / (duration || 1)) * 100}%` }}
+             ></div>
           </div>
         </div>
 
