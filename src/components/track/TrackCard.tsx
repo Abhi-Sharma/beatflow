@@ -1,6 +1,6 @@
 "use client";
 
-import { Play, Heart, Loader2, Download } from "lucide-react";
+import { Play, Heart, Loader2, Download, Clock } from "lucide-react";
 import { usePlayerStore, PlayerTrack } from "@/store/usePlayerStore";
 import { useLibraryStore } from "@/store/useLibraryStore";
 import { Card, CardContent } from "@/components/ui/card";
@@ -59,21 +59,35 @@ export function TrackCard({ track }: TrackCardProps) {
   };
 
   return (
-    <Card className="group relative overflow-hidden bg-card/50 hover:bg-secondary/50 border-transparent transition-all hover:shadow-xl cursor-default">
+    <Card className="group relative overflow-hidden bg-zinc-900 border border-zinc-800/50 transition-all hover:bg-zinc-800 hover:shadow-2xl hover:-translate-y-1 hover:shadow-emerald-500/10 cursor-default">
       <CardContent className="p-4 flex flex-col gap-3">
         <div className="relative aspect-square rounded-md overflow-hidden bg-secondary">
+          {track.genre && (
+            <div className="absolute top-2 left-2 z-10">
+              <span className="px-2 py-0.5 rounded-full bg-black/70 backdrop-blur-md text-[10px] uppercase font-bold tracking-wider text-emerald-400 border border-emerald-500/20">
+                {track.genre}
+              </span>
+            </div>
+          )}
+          {track.duration && (
+            <div className="absolute bottom-2 right-2 z-10 px-1.5 py-0.5 rounded-md bg-black/70 backdrop-blur-md text-[10px] font-medium text-white flex items-center gap-1 border border-white/10">
+              <Clock className="w-3 h-3 text-zinc-300" />
+              {Math.floor(track.duration / 60)}:{(track.duration % 60).toString().padStart(2, '0')}
+            </div>
+          )}
           <Link href={`/track/${track.id}`}>
             <img 
               src={track.coverUrl} 
               alt={track.title} 
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 cursor-pointer" 
+              loading="lazy"
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 cursor-pointer" 
             />
           </Link>
-          <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
+          <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none">
             <Button 
               size="icon" 
               variant="default" 
-              className="rounded-full w-12 h-12 shadow-[0_0_15px_rgba(16,185,129,0.5)] bg-emerald-500 hover:bg-emerald-400 hover:scale-105 transition-transform pointer-events-auto"
+              className="rounded-full w-12 h-12 shadow-[0_0_20px_rgba(16,185,129,0.4)] bg-emerald-500 hover:bg-emerald-400 hover:scale-105 transition-transform pointer-events-auto"
               onClick={(e) => { e.preventDefault(); e.stopPropagation(); handlePlay(); }}
             >
               <Play className={`w-6 h-6 fill-current ${isCurrentlyPlaying ? "text-black" : "text-black ml-1"}`} />

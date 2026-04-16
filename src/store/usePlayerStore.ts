@@ -7,6 +7,8 @@ export interface PlayerTrack {
   coverUrl: string;
   audioUrl: string;
   downloadUrl?: string;
+  duration?: number;
+  genre?: string;
   source: 'jamendo';
 }
 
