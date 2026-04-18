@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Home, Search, Library, Music, Heart, ListMusic } from "lucide-react";
+import { Home, Search, Library, Music, Heart, ListMusic, User } from "lucide-react";
 
 export function Sidebar() {
   return (
@@ -43,6 +43,10 @@ export function Sidebar() {
             <Link href="/library/playlists" className="flex items-center gap-3 px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-md hover:bg-secondary/50">
               <ListMusic className="w-5 h-5" />
               Playlists
+            </Link>
+            <Link href="/account" className="flex items-center gap-3 px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-md hover:bg-secondary/50">
+              <User className="w-5 h-5" />
+              Account
             </Link>
           </div>
         </div>

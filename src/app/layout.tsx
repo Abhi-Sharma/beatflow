@@ -11,6 +11,7 @@ import { MobileBottomNav } from "@/components/layout/MobileBottomNav";
 import { PageTransition } from "@/components/layout/PageTransition";
 import Link from "next/link";
 import NextTopLoader from 'nextjs-toploader';
+import { ThemeProvider } from "@/components/providers/ThemeProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -71,7 +72,7 @@ export default async function RootLayout({
 
   return (
     <ClerkProvider>
-      <html lang="en" className="dark">
+      <html lang="en" suppressHydrationWarning>
         <head>
           <script
             type="application/ld+json"
@@ -83,7 +84,8 @@ export default async function RootLayout({
           />
         </head>
         <body className={`${inter.className} h-screen overflow-hidden flex bg-background text-foreground`}>
-          <NextTopLoader color="#10b981" showSpinner={false} height={3} />
+          <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
+            <NextTopLoader color="#10b981" showSpinner={false} height={3} />
           <FavoritesHydrator initialFavorites={favorites} />
           <Sidebar />
           <div className="flex-1 flex flex-col min-w-0 pb-16 md:pb-0">
@@ -108,8 +110,9 @@ export default async function RootLayout({
               </footer>
             </main>
           </div>
-          <Player />
-          <MobileBottomNav />
+            <Player />
+            <MobileBottomNav />
+          </ThemeProvider>
         </body>
       </html>
     </ClerkProvider>
