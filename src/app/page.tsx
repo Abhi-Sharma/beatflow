@@ -7,6 +7,7 @@ import { ChevronRight, CheckCircle2, ShieldCheck, DownloadCloud, Radio, Mail } f
 import { Metadata } from "next";
 import { NewsletterForm } from "@/components/newsletter/NewsletterForm";
 import { RecentlyPlayed } from "@/components/recently-played/RecentlyPlayed";
+import { RecommendationOrchestrator } from "@/components/recommendations/RecommendationOrchestrator";
 
 export const metadata: Metadata = {
   alternates: {
@@ -101,30 +102,31 @@ export default async function Home() {
               </Link>
             </div>
 
-            {/* Trust Badges */}
-            <div className="mt-12 md:mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 w-full max-w-4xl mx-auto">
-              <div className="flex flex-col items-center gap-2">
-                <CheckCircle2 className="w-6 h-6 text-emerald-400" />
-                <span className="text-sm md:text-base font-semibold text-zinc-300">Royalty-Free Music</span>
-              </div>
-              <div className="flex flex-col items-center gap-2">
-                <ShieldCheck className="w-6 h-6 text-emerald-400" />
-                <span className="text-sm md:text-base font-semibold text-zinc-300">Safe for Creators</span>
-              </div>
-              <div className="flex flex-col items-center gap-2">
-                <DownloadCloud className="w-6 h-6 text-emerald-400" />
-                <span className="text-sm md:text-base font-semibold text-zinc-300">Instant Download</span>
-              </div>
-              <div className="flex flex-col items-center gap-2">
-                <Radio className="w-6 h-6 text-emerald-400" />
-                <span className="text-sm md:text-base font-semibold text-zinc-300">Stream Online</span>
+              <div className="mt-12 md:mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 w-full max-w-4xl mx-auto">
+                <div className="flex flex-col items-center gap-2">
+                  <CheckCircle2 className="w-6 h-6 text-emerald-400" />
+                  <span className="text-sm md:text-base font-semibold text-zinc-300">Royalty-Free Music</span>
+                </div>
+                <div className="flex flex-col items-center gap-2">
+                  <ShieldCheck className="w-6 h-6 text-emerald-400" />
+                  <span className="text-sm md:text-base font-semibold text-zinc-300">Safe for Creators</span>
+                </div>
+                <div className="flex flex-col items-center gap-2">
+                  <DownloadCloud className="w-6 h-6 text-emerald-400" />
+                  <span className="text-sm md:text-base font-semibold text-zinc-300">Instant Download</span>
+                </div>
+                <div className="flex flex-col items-center gap-2">
+                  <Radio className="w-6 h-6 text-emerald-400" />
+                  <span className="text-sm md:text-base font-semibold text-zinc-300">Stream Online</span>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <RecentlyPlayed />
+        <RecommendationOrchestrator />
+
+        <RecentlyPlayed />
 
       {/* Premium Category Cards */}
       <section className="px-4 md:px-8 max-w-[1400px] mx-auto">
