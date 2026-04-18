@@ -5,6 +5,7 @@ import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import Link from "next/link";
 import { ChevronRight, CheckCircle2, ShieldCheck, DownloadCloud, Radio, Mail } from "lucide-react";
 import { Metadata } from "next";
+import { NewsletterForm } from "@/components/newsletter/NewsletterForm";
 
 export const metadata: Metadata = {
   alternates: {
@@ -204,20 +205,7 @@ export default async function Home() {
             <p className="text-zinc-400 text-lg mb-8">
               Join 50,000+ creators. We'll send you hand-picked music directly to your inbox so you never run out of inspiration.
             </p>
-            <form className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto" action="/">
-              <input 
-                type="email" 
-                placeholder="Enter your email" 
-                className="flex-1 bg-zinc-950 border border-zinc-700/50 rounded-full px-6 py-4 text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-all"
-                required
-              />
-              <button 
-                type="submit" 
-                className="bg-emerald-500 text-black font-bold px-8 py-4 rounded-full hover:bg-emerald-400 transition-colors shadow-lg shadow-emerald-500/20 active:scale-95"
-              >
-                Subscribe
-              </button>
-            </form>
+            <NewsletterForm />
           </div>
         </div>
       </section>
