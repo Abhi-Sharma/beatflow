@@ -59,17 +59,52 @@ async function sendConfirmationEmail(userEmail: string) {
       to: userEmail,
       subject: "Thanks for Subscribing! 🎵",
       html: `
-        <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
-          <h2 style="color: #10B981;">Welcome to BeatFlow! 🎉</h2>
-          <p>Hi there,</p>
-          <p>Thanks for subscribing to our newsletter. You'll now receive fresh royalty-free tracks directly in your inbox weekly!</p>
-          <p>Start finding your perfect soundtracks today.</p>
-          <br/>
-          <a href="https://beatflow.space" style="background-color: #10B981; color: #000; padding: 12px 24px; text-decoration: none; border-radius: 999px; font-weight: bold; display: inline-block; margin-top: 10px;">Browse Free Tracks</a>
-          <br/><br/>
-          <p style="color: #666; font-size: 14px;">Stay inspired,<br/>The BeatFlow Team</p>
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background:#111; color:#fff; border-radius:16px; overflow:hidden; border:1px solid #222;">
+      
+      <!-- Header -->
+      <div style="text-align:center; padding:30px 20px; background:linear-gradient(135deg,#111,#0f172a);">
+        <img src="https://beatflow.space/icon.png" alt="BeatFlow Logo" width="70" height="70" style="border-radius:18px; margin-bottom:15px;" />
+        <h1 style="margin:0; font-size:28px; color:#10B981;">BeatFlow</h1>
+        <p style="margin:8px 0 0; color:#aaa;">Royalty-Free Music for Creators</p>
+      </div>
+
+      <!-- Body -->
+      <div style="padding:35px 25px;">
+        <h2 style="color:#10B981; margin-top:0;">Welcome to BeatFlow 🎉</h2>
+
+        <p style="font-size:16px; line-height:1.7; color:#ddd;">
+          Hi there,
+        </p>
+
+        <p style="font-size:16px; line-height:1.7; color:#ddd;">
+          Thanks for subscribing to our newsletter. You'll now receive fresh royalty-free tracks directly in your inbox weekly.
+        </p>
+
+        <p style="font-size:16px; line-height:1.7; color:#ddd;">
+          Discover music for YouTube videos, reels, podcasts, vlogs, ads, and more.
+        </p>
+
+        <div style="text-align:center; margin:35px 0;">
+          <a href="https://beatflow.space"
+             style="background:#10B981; color:#000; padding:14px 28px; text-decoration:none; border-radius:999px; font-weight:bold; display:inline-block; font-size:16px;">
+             Browse Free Tracks
+          </a>
         </div>
-      `,
+
+        <p style="font-size:15px; color:#aaa; line-height:1.6;">
+          Stay inspired,<br/>
+          <strong style="color:#10B981;">The BeatFlow Team</strong>
+        </p>
+      </div>
+
+      <!-- Footer -->
+      <div style="padding:20px; text-align:center; border-top:1px solid #222; color:#777; font-size:13px;">
+        © 2026 BeatFlow • Legal Royalty-Free Audio <br/>
+        <a href="https://beatflow.space" style="color:#10B981; text-decoration:none;">beatflow.space</a>
+      </div>
+
+    </div>
+  `,
     });
 
     console.log("Confirmation Email sent: %s", info.messageId);
