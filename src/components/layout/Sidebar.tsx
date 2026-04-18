@@ -25,6 +25,10 @@ export function Sidebar() {
             <Library className="w-5 h-5" />
             Free Music
           </Link>
+          <Link href="/playlists" className="flex items-center gap-3 px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-md hover:bg-secondary/50">
+            <ListMusic className="w-5 h-5" />
+            Collections
+          </Link>
         </div>
 
         <div className="pt-4 border-t border-border">

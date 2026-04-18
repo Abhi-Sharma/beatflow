@@ -4,8 +4,10 @@ import { useRef, useEffect, useState } from "react";
 import { Play, Pause, SkipBack, SkipForward, Volume2, VolumeX, ListMusic, Heart, Loader2, ChevronDown } from "lucide-react";
 import { usePlayerStore } from "@/store/usePlayerStore";
 import { useLibraryStore } from "@/store/useLibraryStore";
+import { useHistoryStore } from "@/store/useHistoryStore";
 import { useAuth, useClerk } from "@clerk/nextjs";
 import { toggleFavoriteAction } from "@/app/actions/favorites";
+import { logTrackHistory, syncGuestHistory } from "@/app/actions/history";
 import { AddToPlaylistMenu } from "@/components/playlists/AddToPlaylistMenu";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -19,9 +21,11 @@ export function Player() {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const { favorites, toggleFavorite } = useLibraryStore();
+  const { tracks: historyTracks, addTrack: addHistoryTrack, clearHistory } = useHistoryStore();
   const { userId } = useAuth();
   const { openSignIn } = useClerk();
   const [isLiking, setIsLiking] = useState(false);
+  const [hasSynced, setHasSynced] = useState(false);
 
   useEffect(() => {
     if (!audioRef.current) return;
@@ -47,6 +51,32 @@ export function Player() {
     }
     return () => { document.body.style.overflow = 'unset'; };
   }, [isExpanded]);
+
+  // Sync Guest History to DB upon Login
+  useEffect(() => {
+    if (userId && !hasSynced && historyTracks.length > 0) {
+      setHasSynced(true);
+      syncGuestHistory(historyTracks).then((res) => {
+        if (res?.success) clearHistory();
+      });
+    }
+  }, [userId, hasSynced, historyTracks, clearHistory]);
+
+  // Track History Logging
+  useEffect(() => {
+    if (!currentTrack) return;
+    
+    // Introduce slight 1-sec delay so skipping tracks quickly doesn't spam history
+    const timer = setTimeout(() => {
+      if (userId) {
+        logTrackHistory(currentTrack);
+      } else {
+        addHistoryTrack(currentTrack);
+      }
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, [currentTrack?.id, userId]);
 
   const handleTimeUpdate = () => {
     if (audioRef.current) {

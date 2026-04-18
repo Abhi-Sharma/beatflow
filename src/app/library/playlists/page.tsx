@@ -3,12 +3,17 @@ import { Music, ListMusic, Play } from "lucide-react";
 import { getUserPlaylists } from "@/app/actions/playlists";
 import { CreatePlaylistDialog } from "@/components/playlists/CreatePlaylistDialog";
 import Link from "next/link";
+import { RecentlyPlayed } from "@/components/recently-played/RecentlyPlayed";
 
 export default async function PlaylistsPage() {
   const playlists = await getUserPlaylists();
 
   return (
     <div className="space-y-6">
+      <div className="-mx-4 md:-mx-8 print:hidden">
+        <RecentlyPlayed />
+      </div>
+
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold tracking-tight">Your Playlists</h1>

@@ -1,20 +1,18 @@
 import { auth } from "@clerk/nextjs/server";
 import { UserButton, SignInButton } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { HistoryNavigation } from "@/components/layout/HistoryNavigation";
+import { Suspense } from "react";
 
 export async function Header() {
   const { userId } = await auth();
 
   return (
-    <header className="h-16 flex items-center justify-between px-6 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 z-10 sticky top-0">
+    <header className="h-16 flex items-center justify-between px-4 md:px-6 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 z-10 sticky top-0 border-b border-white/5 shadow-sm">
       <div className="flex items-center gap-2">
-        <button className="p-1 rounded-full bg-black/40 text-muted-foreground hover:text-foreground transition">
-          <ChevronLeft className="w-5 h-5" />
-        </button>
-        <button className="p-1 rounded-full bg-black/40 text-muted-foreground hover:text-foreground transition">
-          <ChevronRight className="w-5 h-5" />
-        </button>
+        <Suspense fallback={<div className="w-[72px] h-9" />}>
+          <HistoryNavigation />
+        </Suspense>
       </div>
 
       <div className="flex items-center gap-4">

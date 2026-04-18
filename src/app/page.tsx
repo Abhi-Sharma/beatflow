@@ -6,6 +6,7 @@ import Link from "next/link";
 import { ChevronRight, CheckCircle2, ShieldCheck, DownloadCloud, Radio, Mail } from "lucide-react";
 import { Metadata } from "next";
 import { NewsletterForm } from "@/components/newsletter/NewsletterForm";
+import { RecentlyPlayed } from "@/components/recently-played/RecentlyPlayed";
 
 export const metadata: Metadata = {
   alternates: {
@@ -122,6 +123,8 @@ export default async function Home() {
           </div>
         </div>
       </section>
+
+      <RecentlyPlayed />
 
       {/* Premium Category Cards */}
       <section className="px-4 md:px-8 max-w-[1400px] mx-auto">

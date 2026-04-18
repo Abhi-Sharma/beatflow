@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, Search, Heart, ListMusic } from "lucide-react";
+import { Home, Search, Heart, ListMusic, Disc3 } from "lucide-react";
 import { motion } from "framer-motion";
 
 export function MobileBottomNav() {
@@ -11,6 +11,7 @@ export function MobileBottomNav() {
   const links = [
     { href: "/", label: "Home", icon: Home },
     { href: "/search", label: "Search", icon: Search },
+    { href: "/playlists", label: "Curated", icon: Disc3 },
     { href: "/library/favorites", label: "Favorites", icon: Heart },
     { href: "/library/playlists", label: "Library", icon: ListMusic },
   ];
