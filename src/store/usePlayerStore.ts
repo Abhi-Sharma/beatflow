@@ -9,7 +9,7 @@ export interface PlayerTrack {
   downloadUrl?: string;
   duration?: number;
   genre?: string;
-  source: 'jamendo';
+  source: 'jamendo' | 'spotify';
 }
 
 interface PlayerStore {

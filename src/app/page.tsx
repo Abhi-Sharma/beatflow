@@ -8,6 +8,9 @@ import { Metadata } from "next";
 import { NewsletterForm } from "@/components/newsletter/NewsletterForm";
 import { RecentlyPlayed } from "@/components/recently-played/RecentlyPlayed";
 import { RecommendationOrchestrator } from "@/components/recommendations/RecommendationOrchestrator";
+import { AIMusicFinder } from "@/components/ai/AIMusicFinder";
+import { SpotifySection } from "@/components/spotify/SpotifySection";
+import { SpotifyTrendsWidget } from "@/components/spotify/SpotifyTrendsWidget";
 
 export const metadata: Metadata = {
   alternates: {
@@ -123,10 +126,17 @@ export default async function Home() {
             </div>
           </div>
         </section>
+        <AIMusicFinder />
 
         <RecommendationOrchestrator />
-
         <RecentlyPlayed />
+
+        {/* Global Spotify Widget below hero on right side maybe? Let's just place it near Recently Played for now, or maybe before "Browse Vibe" */}
+        <section className="px-4 md:px-8 max-w-[1400px] mx-auto py-4">
+          <div className="flex flex-col md:flex-row gap-6">
+            <SpotifyTrendsWidget />
+          </div>
+        </section>
 
       {/* Premium Category Cards */}
       <section className="px-4 md:px-8 max-w-[1400px] mx-auto">
@@ -172,6 +182,9 @@ export default async function Home() {
           </ScrollArea>
         </section>
       )}
+
+      {/* Spotify Discovery Section */}
+      <SpotifySection />
 
       {/* Other Categories Rows */}
       {rowCategories.map((category, index) => {
