@@ -46,8 +46,9 @@ export const spotifyFetch = async (endpoint: string) => {
   });
 
   if (!res.ok) {
-    console.error(`Spotify API error on ${endpoint}`, await res.text());
-    return null;
+    const errorBody = await res.text();
+    console.error(`Spotify API error on ${endpoint}:`, { status: res.status, body: errorBody });
+    return { error: true, status: res.status, body: errorBody };
   }
 
   return res.json();
