@@ -4,10 +4,6 @@ import { curatedPlaylists } from "@/lib/curated-playlists";
 
 const BASE_URL = 'https://beatflow.space';
 
-export async function generateSitemaps() {
-  // Bonus: Structure to support splitting if URLs exceed 50k limit
-  return [{ id: 0 }];
-}
 
 // Helper for generating main static pages
 function getMainRoutes(): MetadataRoute.Sitemap {
@@ -87,13 +83,7 @@ async function getTrackRoutes(): Promise<MetadataRoute.Sitemap> {
   return [];
 }
 
-export default async function sitemap({
-  id,
-}: {
-  id: number;
-}): Promise<MetadataRoute.Sitemap> {
-  // If we had chunks, we would resolve data based on the id segment.
-  
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const dynamicTracks = await getTrackRoutes();
 
   return [
